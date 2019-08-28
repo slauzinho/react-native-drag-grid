@@ -1,7 +1,7 @@
 {
   "name": "react-native-drag-grid",
-  "version": "1.0.2",
-  "license": "UNLICENSED",
+  "version": "1.0.3",
+  "license": "ISC",
   "main": "dist/index.js",
   "module": "dist/react-native-drag-grid.esm.js",
   "typings": "dist/index.d.ts",
