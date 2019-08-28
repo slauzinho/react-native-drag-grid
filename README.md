@@ -1,7 +1,11 @@
+# React-native-drag-grid
+
+This is a fork of the main project you that you can find [here](https://github.com/SHISME/react-native-draggable-grid)
+
 ## Demo
 
 <p align="center">
-  <img alt="Issue Stats" width="400" src="https://github.com/SHISME/react-native-draggable-grid/blob/master/example.gif?raw=true">
+  <img alt="Issue Stats" width="400" src="https://i.imgur.com/ItLeo7B.gif">
 </p>
 
 ## Getting Started
@@ -9,7 +13,7 @@
 ## Installation
 
 ```bash
-npm install react-native-draggable-grid --save
+npm install react-native-drag-grid --save
 ```
 
 ## Usage
@@ -22,7 +26,7 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import { DraggableGrid } from 'react-native-draggable-grid';
+import { DraggableGrid } from 'react-native-drag-grid';
 
 interface MyTestProps {
 

@@ -1,6 +1,6 @@
 {
   "name": "react-native-drag-grid",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "module": "dist/react-native-drag-grid.esm.js",
@@ -30,19 +30,17 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
-    "@types/react-native": "^0.60.8",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@types/react-native": "*",
     "husky": "^3.0.4",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "*",
+    "react-dom": "*",
     "tsdx": "^0.9.0",
     "tslib": "^1.10.0",
-    "typescript": "^3.6.2"
-  },
-  "dependencies": {
-    "react-native": "^0.60.5"
+    "typescript": "^3.6.2",
+    "react-native": "*"
   }
 }
