@@ -29,9 +29,11 @@ export interface IDraggableGridProps<DataType extends IBaseItemType> {
   style?: ViewStyle;
   itemHeight?: number;
   dragStartAnimation?: StyleProp<any>;
-  onItemPress?: (item: DataType) => void;
+  onItemPress?: (item: DataType, position: Animated.AnimatedValueXY) => void;
   onDragStart?: (item: DataType) => void;
   onDragRelease?: (newSortedData: DataType[]) => void;
+  onHandMove?: (gestureEvent: PanResponderGestureState) => void;
+  dragEnabled?: boolean;
 }
 export interface IDraggableGridState {
   blockHeight: number;
@@ -65,6 +67,10 @@ export class DraggableGrid<
   private items: IItem<DataType>[] = [];
   private blockPositions: IPositionOffset[] = [];
   private activeBlockOffset: IPositionOffset = { x: 0, y: 0 };
+
+  static defaultProps = {
+    dragEnabled: true,
+  };
 
   public constructor(props: IDraggableGridProps<DataType>) {
     super(props);
@@ -102,6 +108,10 @@ export class DraggableGrid<
   };
 
   public componentWillReceiveProps(nextProps: IDraggableGridProps<DataType>) {
+    if (JSON.stringify(this.props.data) === JSON.stringify(nextProps.data)) {
+      return;
+    }
+
     nextProps.data.forEach((item, index) => {
       if (this.orderMap[item.key]) {
         if (this.orderMap[item.key].order != index) {
@@ -199,7 +209,10 @@ export class DraggableGrid<
 
   private onBlockPress(itemIndex: number) {
     this.props.onItemPress &&
-      this.props.onItemPress(this.items[itemIndex].itemData);
+      this.props.onItemPress(
+        this.items[itemIndex].itemData,
+        this.items[itemIndex].currentPosition
+      );
   }
 
   private getBlockStyle = (itemIndex: number) => {
@@ -219,6 +232,9 @@ export class DraggableGrid<
   };
 
   private setActiveBlock = (itemIndex: number) => {
+    if (!this.props.dragEnabled) {
+      return false;
+    }
     this.panResponderCapture = true;
     this.setState(
       {
@@ -228,6 +244,7 @@ export class DraggableGrid<
         this.startDragStartAnimation();
       }
     );
+    return true;
   };
 
   private getDragStartAnimation = (itemIndex: number) => {
@@ -416,6 +433,7 @@ export class DraggableGrid<
       );
       this.orderMap[activeItem.key].order = closetOrder;
     }
+    this.props.onHandMove(gestureState);
     return true;
   }
 
