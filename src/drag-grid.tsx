@@ -383,6 +383,7 @@ export class DraggableGrid<
     gestureState: PanResponderGestureState
   ) {
     const activeItem = this.getActiveItem();
+    this.props.onHandMove && this.props.onHandMove(gestureState);
     if (!activeItem) return false;
     const { moveX, moveY } = gestureState;
 
@@ -433,7 +434,6 @@ export class DraggableGrid<
       );
       this.orderMap[activeItem.key].order = closetOrder;
     }
-    this.props.onHandMove(gestureState);
     return true;
   }
 
